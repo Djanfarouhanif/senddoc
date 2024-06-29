@@ -1,7 +1,9 @@
-body{
-    background: rgb(106, 106, 141);
+*{
+    margin: 0;
+    padding: 0;
 }
 
-h1{
-    color: red
+
+body{
+    background: rgb(234, 56, 56);
 }
