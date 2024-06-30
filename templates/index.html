@@ -14,8 +14,8 @@
         <div class="download">
             <div class="search">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrt_token %}
-                    
+                    {% csrf_token %}
+
                     <div class="input">
                         <label for="title">Titre</label>
                         <input type="text" placeholder="text" name="title">
@@ -30,6 +30,13 @@
             <div class="doc"></div>
 
         </div>
+
+        <!-- all doc -->
+         {% if docs %}
+         {% for doc in docs %}
+            {{doc.title}} - <a href="{% url 'upload' doc.id %}">Telecharger</a>
+            {% endfor %}
+         {% endif %}
     </div>
    
 </body>

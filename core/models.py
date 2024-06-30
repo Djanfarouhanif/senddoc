@@ -6,7 +6,7 @@ import uuid
 class Doc(models.Model):
     id = models.CharField (max_length=500, default=uuid.uuid4, primary_key=True)
     title = models.CharField(max_length=500)
-    file = models.FileField(upload_to='document')
+    file = models.FileField(upload_to='document', unique=True)
     semestre = models.IntegerField()
     
 
