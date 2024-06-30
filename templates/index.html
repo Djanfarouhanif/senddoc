@@ -10,6 +10,7 @@
 <body>
     
     <div class="container">
+        {% if message %}
         <p style="color:red">{{message}}</p>
         <div class="download">
             <div class="search">
@@ -30,13 +31,22 @@
             <div class="doc"></div>
 
         </div>
-
+        
+        {% endif %}
+        <div class="upload">
         <!-- all doc -->
          {% if docs %}
          {% for doc in docs %}
-            {{doc.title}} - <a href="{% url 'upload' doc.id %}">Telecharger</a>
+         
+            <div class="doc">
+                <p class="p">{{doc.title}}</p> <p class="s">semestre: {{doc.semestre}}</p> <a href="{% url 'upload' doc.id %}">Telecharger</a>
+              </div>
+         
+           
             {% endfor %}
-         {% endif %}
+
+         </div>
+        {% endif %}
     </div>
    
 </body>

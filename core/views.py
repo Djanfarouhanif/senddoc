@@ -13,13 +13,14 @@ def index(request):
         if title and upload_file  and semestre:
             new_doc  = Doc.objects.create(title=title, file=upload_file, semestre=semestre)
             new_doc.save()
-            print("**********************")
+            
             return redirect('home')
         else:
             erro_message = "Veuille remplire bien les champs"
     
     else:
         erro_message = "None"
+        
 
             
     
