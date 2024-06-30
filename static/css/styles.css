@@ -2,18 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 
 
-.container{
-    background: rgb(6, 6, 176);
-    margin: auto 200px;
-}
 
 .download{
    
-    box-shadow: 0 2px 4px black;
+    color: aqua;
    
 }
 
