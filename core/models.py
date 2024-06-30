@@ -5,10 +5,11 @@ import uuid
 
 class Doc(models.Model):
     id = models.CharField (max_length=500, default=uuid.uuid4, primary_key=True)
-    name = models.CharField(max_length=500)
+    title = models.CharField(max_length=500)
+    file = models.FileField(upload_to='document')
     semestre = models.IntegerField()
     
 
 
     def __str__(self):
-        return self.name
+        return self.title

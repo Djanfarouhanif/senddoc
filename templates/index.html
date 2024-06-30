@@ -10,11 +10,20 @@
 <body>
     
     <div class="container">
+        <p style="color:red">{{message}}</p>
         <div class="download">
             <div class="search">
-                <form action="get">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrt_token %}
+                    
                     <div class="input">
-                        <input type="search" placeholder="search">
+                        <label for="title">Titre</label>
+                        <input type="text" placeholder="text" name="title">
+                        <label for="semestre">Semestre</label>
+                        <input type="number" name="semestre">
+                        <label for="upload_file">Fichier</label>
+                        <input type="file" id="upload_file" name="upload_file">
+                        <button id="button">Envoyer</button>
                     </div>
                 </form>
             </div>
