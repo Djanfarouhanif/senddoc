@@ -11,8 +11,9 @@
     
     <div class="container">
         {% if message %}
-        <p style="color:red">{{message}}</p>
+        
         <div class="download">
+            <p style="color:red">{{message}}</p>
             <div class="search">
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
