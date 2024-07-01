@@ -13,7 +13,8 @@
         {% if message %}
         
         <div class="download">
-            <p style="color:red">{{message}}</p>
+            <a href="{% url 'docs' %}">docs</a>
+            
             <div class="search">
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -37,17 +38,22 @@
        
         <!-- all doc -->
          {% if docs %}
-         <div class="upload">
-         {% for doc in docs %}
-         
-            <div class="doc">
-                <p class="p">{{doc.title}}</p> <p class="s">semestre: {{doc.semestre}}</p> <a href="{% url 'upload' doc.id %}">Telecharger</a>
-              </div>
-         
-           
-            {% endfor %}
-
+         <div class="doc-container">
+            <a href="{% url 'home' %}">Envoyer un document</a>
+            <div class="upload">
+               
+            {% for doc in docs %}
+            
+               <div class="doc">
+                   <p class="p">{{doc.title}}</p> <p class="s">semestre: {{doc.semestre}}</p> <a href="{% url 'upload' doc.id %}">Telecharger</a>
+                 </div>
+            
+              
+               {% endfor %}
+   
+            </div>
          </div>
+         
         {% endif %}
     </div>
    
