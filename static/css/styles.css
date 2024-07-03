@@ -54,8 +54,11 @@ form{
 
     }
     form{
-        width: 400px;
+        width: 90%;
         
+    }
+    .search{
+        margin: 0;
     }
 }
 /*-------------and home page*/
