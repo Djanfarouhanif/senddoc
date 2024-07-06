@@ -13,3 +13,11 @@ class Doc(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    user_name = models.CharField(max_length=100)
+    user_image = models.ImageField()
+
+    def __str__(self):
+        return self.username
