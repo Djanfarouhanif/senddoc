@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Doc
+from .models import Doc, Image
 
 
 def index(request):
@@ -32,3 +32,18 @@ def upload(request, pk):
 def docs(request):
     all_doc = Doc.objects.all()
     return render(request, 'index.html', {"docs":all_doc})
+
+
+def image(request):
+    if request.method == "POST":
+        user = request.POST.get("name")
+        image = request.POST.get("image")
+
+        if user and image:
+            new_post = Image.objects.create(username=user, user_image=image)
+            new_post.save()
+            return redirect("image")
+        else:
+            return None
+        
+    return render(request, 'image.html')

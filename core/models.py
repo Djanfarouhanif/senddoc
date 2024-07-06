@@ -16,7 +16,7 @@ class Doc(models.Model):
 
 
 class Image(models.Model):
-    user_name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
     user_image = models.ImageField()
 
     def __str__(self):

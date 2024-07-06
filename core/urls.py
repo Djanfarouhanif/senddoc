@@ -6,5 +6,6 @@ from django.urls import path
 urlpatterns = [
     path('', views.index, name='home'),
     path('upload/<str:pk>', views.upload, name='upload'),
-    path('docs', views.docs, name='docs')
+    path('docs', views.docs, name='docs'),
+    path('image', views.image, name="image")
 ]
