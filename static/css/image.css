@@ -1,3 +1,13 @@
 .container{
     background: lightblue;
 }
+
+label{
+    display: flex;
+}
+
+input{
+    display: flex;
+}
+
+
