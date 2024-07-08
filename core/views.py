@@ -47,3 +47,7 @@ def image(request):
             return None
         
     return render(request, 'image.html')
+
+def download(request,pk):
+
+    return 
