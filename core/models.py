@@ -8,8 +8,6 @@ class Doc(models.Model):
     title = models.CharField(max_length=500)
     file = models.FileField(upload_to='document', unique=True)
     semestre = models.IntegerField()
-    
-
 
     def __str__(self):
         return self.title
