@@ -4,6 +4,7 @@ from .models import Doc, Image
 
 
 def index(request):
+    
     if request.method == 'POST':
         title = request.POST.get('title')
         upload_file = request.FILES.get('upload_file')
@@ -14,11 +15,8 @@ def index(request):
             new_doc.save()
             
             return redirect('home')
-        else:
-            erro_message = "Veuille remplire bien les champs"
     
-    
-    return render(request, "index.html", {"message": erro_message})
+    return render(request, "index.html")
 
 def upload(request, pk):
     doc = get_object_or_404(Doc, id=pk)
@@ -28,10 +26,9 @@ def upload(request, pk):
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(doc.file.name.split('/')[-1])
         return response
 
-
 def docs(request):
     all_doc = Doc.objects.all()
-    return render(request, 'index.html', {"docs":all_doc})
+    return render(request, 'doc.html', {"docs":all_doc})
 
 
 def image(request):
