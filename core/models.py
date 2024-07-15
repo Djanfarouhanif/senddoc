@@ -3,19 +3,14 @@ from django.db import models
 # Create your models here.
 import uuid
 
-class Doc(models.Model):
+class Faculte(models.Model):
     id = models.CharField (max_length=500, default=uuid.uuid4, primary_key=True)
-    title = models.CharField(max_length=500)
-    file = models.FileField(upload_to='document', unique=True)
+    departement = models.CharField(max_length=500)
+    ue = models.CharField(max_length=500)
     semestre = models.IntegerField()
-
+    credit = models.IntegerField()
+    file = models.FileField(upload_to='document', unique=True)
+    
     def __str__(self):
-        return self.title
+        return self.departement
 
-
-class Image(models.Model):
-    username = models.CharField(max_length=100)
-    user_image = models.ImageField()
-
-    def __str__(self):
-        return self.username
