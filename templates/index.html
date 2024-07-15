@@ -1,42 +1,90 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senddoc</title>
-    <link rel="website icon" type="png" href="{% static 'icon/book.png' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="website icon" type="png" href="/static/icon/book.png">
+    <link rel="stylesheet" href="{% static 'icon/book.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    
     <div class="container">
-       
-        <div class="download">
-            <a href="{% url 'docs' %}">docs</a>
-            
-            <div class="search">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-
-                    <div class="input">
-                        <label for="title">Titre</label>
-                        <input type="text" placeholder="text" name="title" required>
-                        <label for="semestre">Semestre</label>
-                        <input type="number" name="semestre" required>
-                        <label for="upload_file">Fichier</label>
-                        <input type="file" id="upload_file" name="upload_file" required>
-                        <button id="button">Envoyer</button>
-                    </div>
-                </form>
+        <!----------Header------------------------>
+        <div class="header">
+            <div class="header_p">
+                <h2> <span>Université</span> de Kara</h2>
             </div>
-            <div class="doc"></div>
-
         </div>
-       
-        <!-- all doc -->
-               
+        <!--_______________Fin Header___________________-->
+
+        <!-----------------Plaine------------------------------->
+        <div class="plaine">
+            <div class="text">
+                <div class="text_p">
+                    <h1>Telecharger vos cours <span>PDF</span> </h1>
+                <p>Ce plateforme est cree dans le bus </p>
+                <p>de parteger et telecharger vos cours</p>
+                </div>
+                
+            </div>
+            <div class="plaine-image">
+                <img src="/static/image/travaille.jpg" alt="present">
+            </div>
+        </div>
+        <!--_________________________Fin plaine__________________________-->
+
+        <!--------------------Search------------------------->
+        <div class="search">
+            <form action="">
+                <div class="faculter">
+                    <label for="Faculter">Faculter</label>
+                    <select name="Faculter" id="faculter">
+                        <option value="Fast">Fast</option>
+                        <option value="FDSP">FDSP</option>
+                        <option value="ISMA">ISMA</option>
+                        <option value="FaSEG">FaSEG</option>
+                    </select>
+                </div>
+                <div class="departement">
+                    <label for="departement">Departement</label>
+                    <select name="departement" id="departement">
+                        <option value="LSVT">LSVT</option>
+                        <option value="Mathematique">Mathematique</option>
+                        <option value="Chimie">CHIME</option>
+                    </select>
+                </div>
+                <button>Rechercher</button>
+            </form>
+        </div>
+        <!--__________________Fin Search____________________-->
+        <!------------------Content---------------------------------->
+        <div class="content">
+            <table>
+                <caption><span>Licence </span> en Science de la vie et de la terre</caption>
+               <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>UE</td>
+                        <td>Semestre</td>
+                        <td>Credit</td>
+                        <td>telecharger</td>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                        <td class="td-1"><span>1</span></td>
+                        <td class="td-2">Mecanique</td>
+                        <td class="td-3">Semestre 2</td>
+                        <td class="td-4"> 05</td>
+                        <td class="td-5"><a href="#">Telecharger</a></td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+        <!--_______________________Fin Content_________________________-->
     </div>
-   
 </body>
 </html>
