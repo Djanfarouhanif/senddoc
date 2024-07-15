@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Doc, Image
+from .models import Faculte
 
 
 
-admin.site.register(Doc)
-admin.site.register(Image)
+admin.site.register(Faculte)
+

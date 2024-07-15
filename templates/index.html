@@ -38,10 +38,11 @@
 
         <!--------------------Search------------------------->
         <div class="search">
-            <form action="">
+            <form method="post">
+                {% csrf_token %}
                 <div class="faculter">
-                    <label for="Faculter">Faculter</label>
-                    <select name="Faculter" id="faculter">
+                    <label for="Faculte">Faculte</label>
+                    <select name="faculte" id="faculter">
                         <option value="Fast">Fast</option>
                         <option value="FDSP">FDSP</option>
                         <option value="ISMA">ISMA</option>
@@ -53,7 +54,9 @@
                     <select name="departement" id="departement">
                         <option value="LSVT">LSVT</option>
                         <option value="Mathematique">Mathematique</option>
-                        <option value="Chimie">CHIME</option>
+                        <option value="CHIMIE">CHIME</option>
+                        <option value="Economie">ECONOMIE</option>
+                        <option value="gestion">GESTION</option>
                     </select>
                 </div>
                 <button>Rechercher</button>
@@ -61,6 +64,8 @@
         </div>
         <!--__________________Fin Search____________________-->
         <!------------------Content---------------------------------->
+         <p style="color: red; text-align: center; margin-bottom: 100px; font-weight: bold; font-size: 40px;">{{message}}</p>
+        {% if results %}
         <div class="content">
             <table>
                 <caption><span>Licence </span> en Science de la vie et de la terre</caption>
@@ -73,17 +78,21 @@
                         <td>telecharger</td>
                     </tr>
                </thead>
+               {% for result in results  %}
+               
                <tbody>
                     <tr>
                         <td class="td-1"><span>1</span></td>
-                        <td class="td-2">Mecanique</td>
-                        <td class="td-3">Semestre 2</td>
-                        <td class="td-4"> 05</td>
+                        <td class="td-2">{{result.ue}}</td>
+                        <td class="td-3">Semestre {{result.semestre}}</td>
+                        <td class="td-4"> {{result.credit}}</td>
                         <td class="td-5"><a href="#">Telecharger</a></td>
                     </tr>
                </tbody>
+               {% endfor %}
             </table>
         </div>
+        {% endif %}
         <!--_______________________Fin Content_________________________-->
     </div>
 </body>

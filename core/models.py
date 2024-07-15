@@ -5,6 +5,7 @@ import uuid
 
 class Faculte(models.Model):
     id = models.CharField (max_length=500, default=uuid.uuid4, primary_key=True)
+    faculte = models.CharField(max_length=500, default="")
     departement = models.CharField(max_length=500)
     ue = models.CharField(max_length=500)
     semestre = models.IntegerField()

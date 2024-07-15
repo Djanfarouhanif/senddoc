@@ -1,9 +1,31 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Doc, Image
+from .models import Faculte
+
 
 
 def index(request):
+    all_faculte = Faculte.objects.all()
+    if request.method == "POST":
+        faculte =  request.POST.get("faculte")
+        departement = request.POST.get("departement")
+
+        search_faculter = []
+        for n in all_faculte:
+            
+            if str(n) == departement and n.faculte == faculte:
+                search_faculter.append(n)
+        if len(search_faculter) == 0:
+            message = "Pas de Resulta........................."
+            context = {"message":message}
+        else:
+            context = {"results": search_faculter}
+
+        return render(request, 'index.html', context)
+
+    return render(request,'index.html')
+
+def docs(request):
     
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -19,32 +41,12 @@ def index(request):
     return render(request, "index.html")
 
 def upload(request, pk):
-    doc = get_object_or_404(Doc, id=pk)
+    doc = get_object_or_404(Faculte, id=pk)
     file_path = doc.file.path
     with open(file_path, 'rb') as f:
         response = HttpResponse(f.read(), content_type='application/octet-stream')
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(doc.file.name.split('/')[-1])
         return response
 
-def docs(request):
-    all_doc = Doc.objects.all()
-    return render(request, 'doc.html', {"docs":all_doc})
 
 
-def image(request):
-    if request.method == "POST":
-        user = request.POST.get("name")
-        image = request.POST.get("image")
-
-        if user and image:
-            new_post = Image.objects.create(username=user, user_image=image)
-            new_post.save()
-            return redirect("image")
-        else:
-            return None
-        
-    return render(request, 'image.html')
-
-def download(request,pk):
-
-    return 
