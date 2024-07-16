@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.template.loader import render_to_string
 from .models import Faculte
 
 
@@ -23,9 +24,6 @@ def index(request):
             #Trier les resutats par semestre
             search_faculter_sorted = sorted(search_faculter, key=lambda x: x.semestre)
             context = {"results": search_faculter_sorted}
-
-        #_____________FIN_________________________
-                    
 
         return render(request, 'index.html', context)
 
