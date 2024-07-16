@@ -9,34 +9,22 @@ def index(request):
     if request.method == "POST":
         faculte =  request.POST.get("faculte")
         departement = request.POST.get("departement")
-        #list essai
-        liste = []
-        search_faculter = []
-        for n in all_faculte:
-            
-            
-            if str(n) == departement and n.faculte == faculte:
-                search_faculter.append(n)
-        
-        if len(search_faculter) == 0:
+        # Filtrer les facultés selon les criteres
+        search_faculter = [
+            n for n in all_faculte
+            if str(n) == departement and n.faculte == faculte
+        ]
+
+        #Verifier si les resultats ont ete trouves
+        if not search_faculter:
             message = "Pas de Resulta........................."
             context = {"message":message} 
-        else:
-            context = {"results": search_faculter}
-        
-        n_search = len(search_faculter)
-        for n in range(n_search):
-            n_index = n
-            first = search_faculter[n_index]
-            for i in range(n_index+1, n_search-1):
-                if search_faculter[n_index].semestre > search_faculter[i].semestre:
-                    first = search_faculter[i]
-                    index = n
-            search_faculter[index] = search_faculter[n_index]
-            search_faculter[n_index] = search_faculter[index]
-        print(liste)
-        for i in search_faculter:
-            print(i.semestre)
+        else: 
+            #Trier les resutats par semestre
+            search_faculter_sorted = sorted(search_faculter, key=lambda x: x.semestre)
+            context = {"results": search_faculter_sorted}
+
+        #_____________FIN_________________________
                     
 
         return render(request, 'index.html', context)
