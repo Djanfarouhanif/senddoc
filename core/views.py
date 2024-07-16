@@ -9,22 +9,40 @@ def index(request):
     if request.method == "POST":
         faculte =  request.POST.get("faculte")
         departement = request.POST.get("departement")
-
+        #list essai
+        liste = []
         search_faculter = []
         for n in all_faculte:
             
+            
             if str(n) == departement and n.faculte == faculte:
                 search_faculter.append(n)
+        
         if len(search_faculter) == 0:
             message = "Pas de Resulta........................."
-            context = {"message":message}
+            context = {"message":message} 
         else:
             context = {"results": search_faculter}
+        
+        n_search = len(search_faculter)
+        for n in range(n_search):
+            n_index = n
+            first = search_faculter[n_index]
+            for i in range(n_index+1, n_search-1):
+                if search_faculter[n_index].semestre > search_faculter[i].semestre:
+                    first = search_faculter[i]
+                    index = n
+            search_faculter[index] = search_faculter[n_index]
+            search_faculter[n_index] = search_faculter[index]
+        print(liste)
+        for i in search_faculter:
+            print(i.semestre)
+                    
 
         return render(request, 'index.html', context)
 
     return render(request,'index.html')
-
+ 
 def docs(request):
     
     if request.method == 'POST':
