@@ -66,34 +66,11 @@
         <!--__________________Fin Search____________________-->
         <!------------------Content---------------------------------->
          <div id="message" style="color: red; text-align: center; margin-bottom: 100px; font-weight: bold; font-size: 40px;"></div>
-        <!-- {% if results %} -->
+        
         <div class="content" id="results">
-            <!-- <table>
-                <caption><span>Licence </span> en Science de la vie et de la terre</caption>
-               <thead>
-                    <tr>
-                        <td>id</td>
-                        <td>UE</td>
-                        <td>Semestre</td>
-                        <td>Credit</td>
-                        <td>telecharger</td>
-                    </tr> -->
-               <!-- </thead>
-               {% for result in results  %}
-               
-               <tbody>
-                    <tr>
-                        <td class="td-1"><span>1</span></td>
-                        <td class="td-2">{{result.ue}}</td>
-                        <td class="td-3">Semestre {{result.semestre}}</td>
-                        <td class="td-4"> {{result.credit}}</td>
-                        <td class="td-5"><a href="#">Telecharger</a></td>
-                    </tr>
-               </tbody>
-               {% endfor %}
-            </table> -->
+            
         </div>
-        <!-- {% endif %} -->
+       
         <!--_______________________Fin Content_________________________-->
     </div>
    <script>
@@ -112,20 +89,20 @@
                             $("#message").text(response.message);
 
                         }else {
-                            let table = '<table><caption><span>Licence</span> en Science de la vie et de terre </caption><thead><tr><td>ID</td><td>UE</td><td>Semestre</td><td>Crédit</td><td>Télécharger</td></tr></thead><tbody>';
+                            let table = '<table><caption><span>Licence </span> en Science de la vie et de la terre</caption><thead><tr><td>ID</td><td>UE</td><td>Semestre</td><td>Crédit</td><td>Télécharger</td></tr></thead><tbody>';
                             $.each(response.results, function(index, result){
-                                table += '<tr><td class = "td-1"><span>1</span></td><td class="td2">' + result.ue + '</td><td class="td-3">Semestre ' + result.semestre + '</td><td class="td-4>" ' + result.credit + '</td><td class="td-5"><href="#">Télécharger</a></td></tr>';
+                                table += '<tr><td class="td-1"><span>1</span></td><td class="td-2">' + result.ue + '</td><td class="td-3">Semestre ' + result.semestre + '</td><td class="td-4">' + result.credit + '</td><td class="td-5"><a href="#">Télécharger</a></td></tr>';
                             });
                             table += '</tbody></table>';
                             $('#results').html(table);
                         }
                     },
                     error: function(response){
-                        console.log("error", response);
+                        console.log("error",response)
                     }
-                });
-            });
-        });
+                })
+            })
+        })
    </script>
 </body>
 </html>
