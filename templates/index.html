@@ -9,6 +9,7 @@
     <link rel="website icon" type="png" href="/static/icon/book.png">
     <link rel="stylesheet" href="{% static 'icon/book.png' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -38,7 +39,7 @@
 
         <!--------------------Search------------------------->
         <div class="search">
-            <form method="post">
+            <form method="post" id="searchForm">
                 {% csrf_token %}
                 <div class="faculter">
                     <label for="Faculte">Faculte</label>
@@ -59,15 +60,15 @@
                         <option value="gestion">GESTION</option>
                     </select>
                 </div>
-                <button id="searchButton">Rechercher</button>
+                <button type="submit" id="searchButton">Rechercher</button>
             </form>
         </div>
         <!--__________________Fin Search____________________-->
         <!------------------Content---------------------------------->
-         <p style="color: red; text-align: center; margin-bottom: 100px; font-weight: bold; font-size: 40px;">{{message}}</p>
-        {% if results %}
-        <div class="content">
-            <table>
+         <div id="message" style="color: red; text-align: center; margin-bottom: 100px; font-weight: bold; font-size: 40px;"></div>
+        <!-- {% if results %} -->
+        <div class="content" id="results">
+            <!-- <table>
                 <caption><span>Licence </span> en Science de la vie et de la terre</caption>
                <thead>
                     <tr>
@@ -76,8 +77,8 @@
                         <td>Semestre</td>
                         <td>Credit</td>
                         <td>telecharger</td>
-                    </tr>
-               </thead>
+                    </tr> -->
+               <!-- </thead>
                {% for result in results  %}
                
                <tbody>
@@ -90,11 +91,41 @@
                     </tr>
                </tbody>
                {% endfor %}
-            </table>
+            </table> -->
         </div>
-        {% endif %}
+        <!-- {% endif %} -->
         <!--_______________________Fin Content_________________________-->
     </div>
-  
+   <script>
+        $(document).ready(function(){
+            $('#searchForm').on('submit', function(event){
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'home' %}",
+                    data: $(this).serialize(),
+                    success: function(response){
+                        $('#message').text('');
+                        $('#results').html('');
+                        if (response.message){
+                            $("#message").text(response.message);
+
+                        }else {
+                            let table = '<table><caption><span>Licence</span> en Science de la vie et de terre </caption><thead><tr><td>ID</td><td>UE</td><td>Semestre</td><td>Crédit</td><td>Télécharger</td></tr></thead><tbody>';
+                            $.each(response.results, function(index, result){
+                                table += '<tr><td class = "td-1"><span>1</span></td><td class="td2">' + result.ue + '</td><td class="td-3">Semestre ' + result.semestre + '</td><td class="td-4>" ' + result.credit + '</td><td class="td-5"><href="#">Télécharger</a></td></tr>';
+                            });
+                            table += '</tbody></table>';
+                            $('#results').html(table);
+                        }
+                    },
+                    error: function(response){
+                        console.log("error", response);
+                    }
+                });
+            });
+        });
+   </script>
 </body>
 </html>

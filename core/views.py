@@ -20,12 +20,16 @@ def index(request):
         if not search_faculter:
             message = "Pas de Resulta........................."
             context = {"message":message} 
+            #------------return json
+            return JsonReponse({"message": "Pas de Résulta trouvé"})
         else: 
             #Trier les resutats par semestre
             search_faculter_sorted = sorted(search_faculter, key=lambda x: x.semestre)
             context = {"results": search_faculter_sorted}
 
-        return render(request, 'index.html', context)
+            #--------------Json 
+            return JsonResponse({'results':results})
+        #return render(request, 'index.html', context)
 
     return render(request,'index.html')
  
