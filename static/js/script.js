@@ -1,14 +1,23 @@
 const button = document.querySelector('#searchButton');
 const loader = document.querySelector(".loader");
-let isRunning = false;
+const table = document.querySelector('table');
+
+button.addEventListener('click', (event)=>{
+    event.preventDefault();
+           loader.style.display = 'block';
+        setTimeout(()=>{
+            // loader.style.display = 'block';
+           $('#searchForm').submit();
+        }, 3000
+               
+        )
+    
+   
+})
 
 
 
 
-
-
-
-function Syncho(){
     $(document).ready(function(){
         $('#searchForm').on('submit', function(event){
             event.preventDefault();
@@ -34,29 +43,15 @@ function Syncho(){
                 },
                 error: function(response){
                     console.log("error",response)
+                },
+                complete: function(){
+                    loader.style.display = 'none';
+                    
                 }
             });
         });
     });
-}
 
 
-button.addEventListener('click', (event)=>{
-    event.preventDefault();
-
-    if(!isRunning){
-        isRunning = true;
-        loader.style.display = 'block';
-
-        setTimeout(()=>{
-            loader.style.display = 'none';
-            isRunning = false;
-            Syncho()
-        }, 3000
-               
-        )
-    }
-   
-})
 
 
