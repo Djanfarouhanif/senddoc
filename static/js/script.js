@@ -1,3 +1,10 @@
+const button = document.querySelector('#searchButton');
+const loader = document.querySelector(".loader");
+let isRunning = false;
+
+
+
+
 
 
 
@@ -34,5 +41,22 @@ function Syncho(){
 }
 
 
+button.addEventListener('click', (event)=>{
+    event.preventDefault();
 
-Syncho()
+    if(!isRunning){
+        isRunning = true;
+        loader.style.display = 'block';
+
+        setTimeout(()=>{
+            loader.style.display = 'none';
+            isRunning = false;
+            Syncho()
+        }, 3000
+               
+        )
+    }
+   
+})
+
+
