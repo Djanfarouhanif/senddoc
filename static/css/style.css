@@ -75,7 +75,7 @@ body{
 /*________________________________________Fin Plaine_______________________________________*/
 /*----------------------------------------Search-------------------------------*/
 .search{
-    margin: 90px 20px 90px 20px;
+    margin: 90px 20px 20px 20px;
 }
 form{
     display: grid;
@@ -209,8 +209,13 @@ td{
 /*___________________________________________Fin Content________________________________________*/
 
 /*-------------------------------------Loader circular---------------------------*/
-
-.content .loader
+.loader-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+}
+.loader-content .loader
 {
     display: none;
     position: relative;
@@ -218,7 +223,7 @@ td{
     height: 90px;
 }
 
-.content .loader span
+.loader-content .loader span
 {
     position: absolute;
     top: 0;
@@ -229,7 +234,7 @@ td{
 
 }
 
-.content .loader span::before
+.loader-content .loader span::before
 {
     content: '';
     position: absolute;
