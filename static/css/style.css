@@ -134,14 +134,14 @@ button{
     display: flex;
     justify-content: center;
     justify-items: center;
-    min-height: 400px;
+    min-height: 200px;
     
 
 }
 
 table{
-    overflow: scroll;
     
+    display: none;
 }
 caption{
     margin: 20px;
@@ -195,6 +195,14 @@ td{
 
     a{
         color: rgb(245, 65, 65);
+    }
+}
+
+@media only screen and (max-width:400px){
+    table{
+        td{
+            padding: 10px;
+        }
     }
 }
 
