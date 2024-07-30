@@ -46,7 +46,7 @@ def docs(request):
             
             return redirect('home')
     
-    return render(request, "index.html")
+    return render(request, "load.html")
 
 def upload(request, pk):
     doc = get_object_or_404(Faculte, id=pk)
