@@ -26,10 +26,10 @@ def index(request):
             #Trier les resutats par semestre
             search_faculter_sorted = sorted(search_faculter, key=lambda x: x.semestre)
             context = {"results": search_faculter_sorted}
-            results = [{"ue":n.ue, "semestre": n.semestre, "credit":n.credit} for n in search_faculter_sorted]
+            # results = [{"ue":n.ue, "semestre": n.semestre, "credit":n.credit} for n in search_faculter_sorted]
             #--------------Json 
-            return JsonResponse({'results':results})
-        #return render(request, 'index.html', context)
+            #return JsonResponse({'results':results})
+        return render(request, 'index.html', context)
 
     return render(request,'index.html')
  
@@ -42,7 +42,6 @@ def docs(request):
 
         if title and upload_file  and semestre:
             new_doc  = Doc.objects.create(title=title, file=upload_file, semestre=semestre)
-            new_doc.save()
             
             return redirect('home')
     
