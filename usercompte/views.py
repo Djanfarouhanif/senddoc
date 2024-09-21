@@ -13,7 +13,7 @@ class SignupView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response({"message": "Inscription réussie"}, status=status.HTTP_201_CREATED_SUCCESS)
+        return Response({"message": "Inscription réussie"}, status=status.HTTP_201_CREATED)
    
 
 #login user 
@@ -25,13 +25,15 @@ class SigninView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-
+        
         return Response({
             "token": token.key,
             "user_id": user.id,
             "username": user.username
         })
 
+
+#deconnexion de l'utilisateur
 class LogoutView(APIView):
     def post(self, request, *args, **kwargs):
         try:
