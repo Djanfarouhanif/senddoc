@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework.veiws import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import SignupSerializer, SigninSerializer
@@ -14,11 +14,10 @@ class SignupView(generics.CreateAPIView):
         serializer.save()
 
         return Response({"message": "Inscription réussie"}, status=status.HTTP_201_CREATED_SUCCESS)
-    #En cas d'erreur de validation , renvoyer les erreurs
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+   
 
 #login user 
-class SigninView(generics.GenericsAPIView):
+class SigninView(generics.GenericAPIView):
     serializer_class = SigninSerializer
 
     def post(self,request, *args, **kwargs):
