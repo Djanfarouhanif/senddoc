@@ -15,7 +15,6 @@ class SignupView(generics.CreateAPIView):
 
         return Response({"message": "Inscription réussie"}, status=status.HTTP_201_CREATED)
    
-
 #login user 
 class SigninView(generics.GenericAPIView):
     serializer_class = SigninSerializer
@@ -41,4 +40,4 @@ class LogoutView(APIView):
             return Response({"message": "Déconnexion réussie "}, status=status.HTTP_200_OK)
 
         except:
-            return Response({"error": "problème lors de la déconnexion "}, status=status.HTTP_400_Request)
+            return Response({"error": "problème lors de la déconnexion "}, status=status.HTTP_400_BAD_REQUEST)
