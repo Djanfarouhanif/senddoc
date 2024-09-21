@@ -28,7 +28,7 @@ class SignupSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
+#login user 
 class SigninSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True, write_only =True)
